@@ -1,6 +1,11 @@
+noseX=0;
+noseY=0;
+leftWristX=0;
+rightWristX=0;
+difference=0;
 function setup() {
-    canvas=createCanvas(300,300);
-    canvas.center();
+    canvas=createCanvas(450,450);
+    canvas.position(550,100);
     video=createCapture(VIDEO);
     video.size(350,350);
     video.position(175,155);
@@ -9,7 +14,9 @@ function setup() {
 }
 function draw() {
     background("blue");
-    
+    fill("red");
+    text("Amaan😊",noseX,noseY);
+    textSize(difference);
 }
 function modelLoaded() {
     console.log("Model is Loaded");
@@ -17,5 +24,10 @@ function modelLoaded() {
 function got_results(results) {
 if(results.length>0){
 console.log(results);
+noseX=results[0].pose.nose.x;
+noseY=results[0].pose.nose.y;
+leftWristX=results[0].pose.leftWrist.x;
+rightWristX=results[0].pose.rightWrist.x;
+difference=leftWristX-rightWristX;
 }
 }
